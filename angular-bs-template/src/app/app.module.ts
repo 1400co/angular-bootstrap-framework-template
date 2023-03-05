@@ -4,12 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing-module';
-import { ErrorComponent } from './public/error/error.component';
+import { NotFoundComponent } from './public/not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ErrorComponent
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

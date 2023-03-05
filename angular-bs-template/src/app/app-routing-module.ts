@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RedirectGuard } from './guards/redirect.guard';
-import { ErrorComponent } from './public/error/error.component';
+import { NotFoundComponent } from './public/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -11,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    component: ErrorComponent,
+    component: NotFoundComponent,
     title: 'error'
   },
   // {

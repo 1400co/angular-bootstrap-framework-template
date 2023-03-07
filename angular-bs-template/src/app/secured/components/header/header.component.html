@@ -29,7 +29,25 @@
     </ul> -->
 
   <!-- </div> -->
-  <span class="navbar-text">
-    Navbar text with an inline element
-  </span>
+  <div class="row">
+    <div class="col-md-4">
+      <button type="submit"
+      class="btn btn-outline-warning espacio"
+      data-mdb-ripple-color="dark"
+      (click)="Volver()">
+        Volver
+      </button>
+    </div>
+    <div class="col-md-4">
+      <span>{{userName}}</span>
+    </div>
+    <div class="col-md-4 text-end">
+      <button type="submit"
+      class="btn btn-outline-primary espacio"
+      data-mdb-ripple-color="dark"
+      (click)="Salir()">
+        Salir
+      </button>
+    </div>
+  </div>
 </nav>

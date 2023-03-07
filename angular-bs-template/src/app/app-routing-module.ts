@@ -6,7 +6,7 @@ import { NotFoundComponent } from './public/not-found/not-found.component';
 const routes: Routes = [
   {
     path: '',
-    canActivate: [ RedirectGuard ],
+    //canActivate: [ RedirectGuard ],
     loadChildren: () => import('./public/auth/auth.module').then((m) => m.AuthModule),
   },
   {

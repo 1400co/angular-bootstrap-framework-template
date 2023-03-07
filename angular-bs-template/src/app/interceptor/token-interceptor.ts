@@ -26,6 +26,7 @@ export class TokenInterceptor implements HttpInterceptor {
   ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    console.log("Interceptando")
     if (request.context.get(CHECK_TOKEN)) {
       const isValidToken = this.tokenService.isValidToken(); // accessToken
       if (isValidToken) {

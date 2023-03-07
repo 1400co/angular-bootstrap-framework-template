@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { BarrioRoutingModule } from './barrio-routing.module';
 import { ListaBarrioComponent } from './components/lista-barrio/lista-barrio.component';
 import { FormularioBarrioComponent } from './components/formulario-barrio/formulario-barrio.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { FormularioBarrioComponent } from './components/formulario-barrio/formul
   ],
   imports: [
     CommonModule,
-    BarrioRoutingModule
+    BarrioRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class BarrioModule { }

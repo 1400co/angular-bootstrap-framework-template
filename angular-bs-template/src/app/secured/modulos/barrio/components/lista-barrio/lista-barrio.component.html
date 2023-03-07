@@ -1,3 +1,50 @@
 
+<div class="row">
+  <div class="col-md-6">
+    <h1>
+      Barrios
+    </h1>
+  </div>
+  <div class="col-md-6 text-end">
+    <button type="button"
+    class="btn btn-outline-primary"
+    data-mdb-ripple-color="dark"
+    routerLink="/secured/barrios/create">
+      + Agregar
+    </button>
+  </div>
+</div>
+<br>
+<form>
+	<div class="mb-3 row">
+		<label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Filtrar barrios:</label>
+		<div class="col-xs-3 col-sm-auto">
+			<input id="table-filtering-search" class="form-control" type="text"  />
+		</div>
+	</div>
+</form>
+<br>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Código</th>
+      <th>Nombre</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let barrio of barrios">
+      <td>{{barrio.id}}</td>
+      <td>{{barrio.codigo}}</td>
+      <td>{{barrio.nombre}}</td>
+      <td>
+        <a [routerLink]="['./edit', barrio.id]">Editar</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="col-md-12 text-center">
+  <button type="button" class="btn btn-primary btn-rounded ">Cargar más</button>
+</div>
 
-<p>lista-barrio works!</p>

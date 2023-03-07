@@ -1,1 +1,69 @@
-<p>formulario-barrio works!</p>
+<div class="row">
+  <div class="col-md-6">
+    <h1>
+      Barrios
+    </h1>
+  </div>
+  <div class="col-md-6 text-end">
+    <!-- <button type="button"
+    class="btn btn-outline-primary"
+    data-mdb-ripple-color="dark"
+    >
+      Guardar
+    </button> -->
+  </div>
+</div>
+<br>
+<form [formGroup]="form">
+  <div class="row">
+    <div class="2">
+      <label class="form-label" for="form2Example1">Codigo:</label>
+    </div>
+    <div class="10">
+      <input type="text" formControlName="codigo" id="form2Example1" class="form-control" />
+    </div>
+    <div class="invalid-feedback">
+      Este campo es obligatorio.
+    </div>
+  </div>
+  <div class="row">
+    <div class="2">
+      <label class="form-label" for="form2Example1">Nombre:</label>
+    </div>
+    <div class="10">
+      <input type="text" formControlName="nombre" id="form2Example1" class="form-control" />
+    </div>
+    <div class="invalid-feedback">
+      Este campo es obligatorio.
+    </div>
+  </div>
+  <br>
+  <div *ngIf="isFormInValid" class="alert alert-danger" role="alert">
+    <ul>
+      <li *ngIf="!isCodigoFieldValid">El <strong>Codigo</strong> es obligatorio</li>
+      <li *ngIf="!isNombreFieldValid">El <strong>Nombre</strong> es obligatorio</li>
+    </ul>
+  </div>
+  <div *ngIf="statusDetail==='error'" class="alert alert-danger" role="alert">
+    Ha ocurrido un error al crear el barrio.
+  </div>
+  <div *ngIf="statusDetail==='success'" class="alert alert-success" role="alert">
+    El barrio se ha creado con exito.
+  </div>
+  <br>
+  <div class="text-end">
+    <button type="submit"
+    class="btn btn-outline-warning espacio"
+    data-mdb-ripple-color="dark"
+    (click)="Eliminar()">
+      Eliminar
+    </button>
+    <button type="submit"
+    class="btn btn-outline-primary espacio"
+    data-mdb-ripple-color="dark"
+    (click)="Guardar()">
+      Guardar
+    </button>
+  </div>
+
+</form>

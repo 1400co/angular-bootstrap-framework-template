@@ -41,13 +41,38 @@ export class TokenService {
     removeCookie('refresh-oruedar-token');
   }
 
+  saveTokenId(token: number) {
+    setCookie('oruedar-tokenId', token, { expires: 365, path: '/' });
+  }
+
+  getTokenId() {
+    const token = getCookie('oruedar-tokenId');
+    return token;
+  }
+
+  removeTokenId() {
+    removeCookie('oruedar-tokenId');
+  }
+
+  saveTokenUserName(token: string) {
+    setCookie('oruedar-token-UserName', token, { expires: 365, path: '/' });
+  }
+
+  getTokenUserName() {
+    const token = getCookie('oruedar-token-UserName');
+    return token;
+  }
+
+  removeTokenUserName() {
+    removeCookie('oruedar-token-UserName');
+  }
+
   isValidToken() {
     const token = this.getToken();
     if (!token) {
       return false;
     }
     const decodeToken = jwt_decode<JwtPayload>(token);
-
     if (decodeToken && decodeToken?.exp) {
        const expirationTime = new Date(decodeToken.exp * 1000);
        const today = new Date();

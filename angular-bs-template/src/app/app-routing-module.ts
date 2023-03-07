@@ -10,15 +10,15 @@ const routes: Routes = [
     loadChildren: () => import('./public/auth/auth.module').then((m) => m.AuthModule),
   },
   {
+     path: 'secured',
+     //canActivate: [ AuthGuard ],
+     loadChildren: () => import('./secured/secured.module').then((m) => m.SecuredModule),
+  },
+  {
     path: '**',
     component: NotFoundComponent,
     title: 'error'
   },
-  // {
-  //   path: 'app',
-  //   canActivate: [ AuthGuard ],
-  //   loadChildren: () => import('./modules/layout/layout.module').then((m) => m.LayoutModule),
-  // },
 ];
 
 @NgModule({

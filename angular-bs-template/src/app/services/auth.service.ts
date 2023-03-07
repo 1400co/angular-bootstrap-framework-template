@@ -19,7 +19,7 @@ export class AuthService {
     private tokenService: TokenService) { }
 
   login(user: string, password: string) {
-    return this.http.post<ResponseLogin>(`${this.apiUrl}/Auth/login`, {
+    return this.http.post<ResponseLogin>(`${this.apiUrl}Auth/login`, {
       user,
       password
     })

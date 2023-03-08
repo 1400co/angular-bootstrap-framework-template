@@ -34,9 +34,16 @@ export class BarrioService {
     return this.http.get<CustomApiResponse<Barrio[]>>(`${environment.API_URL}barrio`,{ params, context:checkToken() });
   }
 
-  CrearBarrio(barrioDto: Barrio) {
+  getBarrio(id: string) {
+    return this.http.get<CustomApiResponse<Barrio>>(`${environment.API_URL}barrio/${id}`,{  context:checkToken() });
+  }
 
+  CrearBarrio(barrioDto: Barrio) {
     return this.http.post<CustomApiResponse<Barrio[]>>(`${environment.API_URL}barrio`, {...barrioDto, 'ResponsableId': this.tokenService.getTokenId()});
+  }
+
+  ActualizarBarrio(id: number,  barrioDto: Barrio) {
+    return this.http.put<CustomApiResponse<Barrio[]>>(`${environment.API_URL}barrio?id=${id}`, {...barrioDto, 'ResponsableId': this.tokenService.getTokenId()});
   }
 
 }

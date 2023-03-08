@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms'
+import { ActivatedRoute, Params } from '@angular/router';
 import { BarrioService } from 'src/app/services/barrio.service';
 
 @Component({
@@ -7,21 +8,29 @@ import { BarrioService } from 'src/app/services/barrio.service';
   templateUrl: './formulario-barrio.component.html',
   styleUrls: ['./formulario-barrio.component.scss']
 })
-export class FormularioBarrioComponent {
+export class FormularioBarrioComponent implements OnInit {
 
-// form = new FormGroup({
-//   codigo:new FormControl('', [Validators.required]),
-//   nombre:new FormControl('', [Validators.required]),
-// })
+
 form:FormGroup;
+id: string;
 statusDetail: 'loading' | 'success' | 'error' | 'init' = 'init';
 
 constructor(
   private formbuilder:FormBuilder,
-  private barriosService: BarrioService
+  private barriosService: BarrioService,
+  private activatedRoute: ActivatedRoute
 ){
   this.BuildForm();
 }
+  ngOnInit(): void {
+    this.activatedRoute.params.subscribe((params: Params) => {
+      this.id = params['id'];
+      this.barriosService.getBarrio(this.id)
+      .subscribe(product => {
+        this.form.patchValue(product.data);
+      });
+    });
+  }
 
 private BuildForm(){
   this.form = this.formbuilder.group({
@@ -39,6 +48,25 @@ Guardar()
   }
   console.log("Valor a guardar", this.form.value);
   this.barriosService.CrearBarrio(this.form.value).subscribe(
+    (data) => {
+      this.statusDetail = 'success';
+      this.CleanForm();
+    },
+    (errorMsg) => {
+      this.statusDetail = 'error';
+    }
+  );
+}
+
+Actualizar()
+{
+  if(this.form.invalid)
+  {
+    this.form.markAllAsTouched();
+    return;
+  }
+  console.log("Valor a guardar", this.form.value);
+  this.barriosService.ActualizarBarrio(parseInt(this.id), this.form.value).subscribe(
     (data) => {
       this.statusDetail = 'success';
       this.CleanForm();

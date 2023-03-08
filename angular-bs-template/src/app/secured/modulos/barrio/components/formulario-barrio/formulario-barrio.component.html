@@ -53,17 +53,23 @@
   <br>
   <div class="text-end">
     <button type="submit"
-    class="btn btn-outline-warning espacio"
-    data-mdb-ripple-color="dark"
-    (click)="Eliminar()">
-      Eliminar
+      class="btn btn-outline-warning espacio"
+      data-mdb-ripple-color="dark"
+      (click)="Eliminar()">
+        Eliminar
     </button>
-    <button type="submit"
+    <button *ngIf="!id" type="submit"
+      class="btn btn-outline-primary espacio"
+      data-mdb-ripple-color="dark"
+      (click)="Guardar()">
+        Guardar
+    </button>
+    <button *ngIf="id" type="submit"
     class="btn btn-outline-primary espacio"
     data-mdb-ripple-color="dark"
-    (click)="Guardar()">
-      Guardar
-    </button>
+    (click)="Actualizar()">
+      Actualizar
+  </button>
   </div>
 
 </form>

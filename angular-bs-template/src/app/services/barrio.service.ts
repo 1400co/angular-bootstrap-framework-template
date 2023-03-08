@@ -20,14 +20,22 @@ export class BarrioService {
    }
 
    getAllBarrios() {
-    // const cheaders = new HttpHeaders().set('Access-Control-Allow-Origin', 'http://localhost:4200')
-    // .set('Access-Control-Allow-Credentials', 'true');
-
     return this.http.get<CustomApiResponse<Barrio[]>>(`${environment.API_URL}barrio`,{ context: checkToken() });
   }
 
+  getBarrios(nombreBarrio: string, codigo: string,pageNumber : number,pageSize : number  ) {
+    const params = {
+      NombreBarrio: nombreBarrio,
+      codigo: codigo,
+      pageNumber: pageNumber.toString(),
+      pageSize: pageSize.toString()
+    };
+    console.log("parametros", params)
+    return this.http.get<CustomApiResponse<Barrio[]>>(`${environment.API_URL}barrio`,{ params, context:checkToken() });
+  }
+
   CrearBarrio(barrioDto: Barrio) {
-    console.log("service", barrioDto)
+
     return this.http.post<CustomApiResponse<Barrio[]>>(`${environment.API_URL}barrio`, {...barrioDto, 'ResponsableId': this.tokenService.getTokenId()});
   }
 

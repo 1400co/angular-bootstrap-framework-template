@@ -41,6 +41,7 @@ Guardar()
   this.barriosService.CrearBarrio(this.form.value).subscribe(
     (data) => {
       this.statusDetail = 'success';
+      this.CleanForm();
     },
     (errorMsg) => {
       this.statusDetail = 'error';
@@ -75,6 +76,10 @@ get codigoField() {
 
 get isCodigoFieldValid() {
   return this.codigoField.touched && this.codigoField.valid;
+}
+
+private CleanForm(){
+  this.form.reset();
 }
 
 }

@@ -15,11 +15,18 @@
   </div>
 </div>
 <br>
-<form>
+<form [formGroup]="form">
 	<div class="mb-3 row">
-		<label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Filtrar barrios:</label>
+		<label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Codigo:</label>
 		<div class="col-xs-3 col-sm-auto">
-			<input id="table-filtering-search" class="form-control" type="text"  />
+			<input id="table-filtering-search" formControlName="codigo" class="form-control" type="text"  />
+		</div>
+    <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Nombre:</label>
+    <div class="col-xs-3 col-sm-auto">
+			<input id="table-filtering-search" formControlName="nombreBarrio" class="form-control" type="text"  />
+		</div>
+    <div class="col-xs-3 col-sm-auto">
+			<button type="button" class="btn btn-primary btn-rounded" (click)="Buscar()" type="submit">Buscar</button>
 		</div>
 	</div>
 </form>
@@ -45,6 +52,6 @@
   </tbody>
 </table>
 <div class="col-md-12 text-center">
-  <button type="button" class="btn btn-primary btn-rounded ">Cargar más</button>
+  <button type="button" class="btn btn-primary btn-rounded " (click)="CargarMas()">Cargar más</button>
 </div>
 

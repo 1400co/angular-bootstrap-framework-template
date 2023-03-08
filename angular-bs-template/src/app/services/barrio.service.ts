@@ -46,4 +46,7 @@ export class BarrioService {
     return this.http.put<CustomApiResponse<Barrio[]>>(`${environment.API_URL}barrio?id=${id}`, {...barrioDto, 'ResponsableId': this.tokenService.getTokenId()});
   }
 
+  BorrarBarrio(id: number,  barrioDto: Barrio) {
+    return this.http.put<CustomApiResponse<Barrio[]>>(`${environment.API_URL}barrio/borrar?id=${id}`, {...barrioDto, 'ResponsableId': this.tokenService.getTokenId()});
+  }
 }

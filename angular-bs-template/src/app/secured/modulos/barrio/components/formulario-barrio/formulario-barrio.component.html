@@ -48,14 +48,14 @@
     Ha ocurrido un error al crear el barrio.
   </div>
   <div *ngIf="statusDetail==='success'" class="alert alert-success" role="alert">
-    El barrio se ha creado con exito.
+    La operacion se ha realizado con exito.
   </div>
   <br>
   <div class="text-end">
-    <button type="submit"
+    <button *ngIf="id" type="submit"
       class="btn btn-outline-warning espacio"
       data-mdb-ripple-color="dark"
-      (click)="Eliminar()">
+      (click)="Eliminar(content)">
         Eliminar
     </button>
     <button *ngIf="!id" type="submit"
@@ -73,3 +73,17 @@
   </div>
 
 </form>
+<ng-template #content let-c="close" let-d="dismiss">
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Eliminar</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="c('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<p>¿Estas seguro que deseas eliminar?</p>
+	</div>
+	<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">No</button>
+    <button type="button" class="btn btn-outline-dark" (click)="c(Borrar())">Si</button>
+	</div>
+</ng-template>
+

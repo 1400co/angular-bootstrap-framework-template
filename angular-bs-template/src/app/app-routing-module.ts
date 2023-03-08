@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 import { RedirectGuard } from './guards/redirect.guard';
 import { NotFoundComponent } from './public/not-found/not-found.component';
 
 const routes: Routes = [
   {
     path: '',
-    //canActivate: [ RedirectGuard ],
+    canActivate: [ RedirectGuard ],
     loadChildren: () => import('./public/auth/auth.module').then((m) => m.AuthModule),
   },
   {
      path: 'secured',
-     //canActivate: [ AuthGuard ],
+     canActivate: [ AuthGuard ],
      loadChildren: () => import('./secured/secured.module').then((m) => m.SecuredModule),
   },
   {

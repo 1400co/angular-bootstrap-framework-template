@@ -2,6 +2,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LayoutComponent } from './layout/layout.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '../guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -15,13 +16,13 @@ const routes: Routes = [
       },
       {
         path: 'dashboard',
-        //canActivate: [ AuthGuard ],
+        canActivate: [ AuthGuard ],
         component: DashboardComponent,
         title:"Dashboard"
       },
       {
         path: 'barrios',
-        //canActivate: [ AuthGuard ],
+        canActivate: [ AuthGuard ],
         loadChildren: () => import('./modulos/barrio/barrio.module').then((m) => m.BarrioModule),
      },
      {

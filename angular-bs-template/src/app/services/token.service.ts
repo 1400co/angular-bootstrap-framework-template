@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { getCookie, setCookie, removeCookie } from 'typescript-cookie';
 import jwt_decode, { JwtPayload } from "jwt-decode";
-import { tap } from 'rxjs';
+import { catchError, of, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ResponseLogin } from '../models/auth.model';
 import { environment } from 'src/environments/environment';
@@ -90,6 +90,13 @@ export class TokenService {
     return true;
   }
 
+removeAllTokens(){
+        this.removeToken();
+        this.removeRefreshToken();
+        this.removeTokenId();
+        this.removeTokenUserName();
+}
+
   refreshToken() {
 
     const accessToken = this.getToken();
@@ -103,10 +110,15 @@ export class TokenService {
       tap(response => {
         this.saveToken(response.authToken);
         this.saveRefreshToken(response.refreshToken);
+      }),
+      catchError(error => {
+        console.log('Ha ocurrido un error:', error);
+        this.removeAllTokens();
+        return of([]);
       })
     );
 
-    }
+  }
 
 
 

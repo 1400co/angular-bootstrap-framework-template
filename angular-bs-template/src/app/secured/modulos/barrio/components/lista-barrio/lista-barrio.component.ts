@@ -12,6 +12,9 @@ export class ListaBarrioComponent implements OnInit{
 
   barrios: Barrio[] =[];
   form:FormGroup;
+  pageSize:number = 0;
+  page:number= 1;
+  collectionSize: number =1
 
  constructor(private barriosService: BarrioService,
   private formbuilder:FormBuilder,){
@@ -25,6 +28,9 @@ export class ListaBarrioComponent implements OnInit{
     this.barriosService.getAllBarrios().subscribe(
       barrios => {
         this.barrios = barrios.data
+        this.collectionSize = barrios.meta.totalCount;
+        this.pageSize = barrios.meta.pageSize;
+
       }
     );
   }
@@ -40,12 +46,18 @@ export class ListaBarrioComponent implements OnInit{
     this.barriosService.getBarrios(this.nameField,this.codigoField ,1 ,1 ).subscribe(
       barrios => {
         this.barrios = barrios.data
+        this.collectionSize = barrios.meta.totalCount;
+        this.pageSize = barrios.meta.pageSize;
       }
     );
   }
 
-  CargarMas(){
-
+  refreshGrid(){
+    this.barriosService.getBarrios(this.nameField,this.codigoField ,this.page ,0 ).subscribe(
+      barrios => {
+        this.barrios = barrios.data
+      }
+    );
   }
 
   get codigoField():string {

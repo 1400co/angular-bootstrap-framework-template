@@ -4,13 +4,13 @@ export class CustomApiResponse<T> {
 
   export class Metadata {
     constructor(
-      public TotalCount: number,
-      public PageSize: number,
-      public CurrentPage: number,
-      public TotalPages: number,
-      public HasNextPage: boolean,
-      public HasPreviousPage: boolean,
-      public NextPageUrl: string,
-      public PreviousPageUrl: string
+      public totalCount: number,
+      public pageSize: number,
+      public currentPage: number,
+      public totalPages: number,
+      public hasNextPage: boolean,
+      public hasPreviousPage: boolean,
+      public nextPageUrl: string,
+      public previousPageUrl: string
     ) {}
   }
